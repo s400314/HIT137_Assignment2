@@ -9,9 +9,9 @@ Encryption rules:
   All other chars: unchanged
 
 Note on collisions:
-  Certain (shift1, shift2) combinations cause two different plaintext letters
-  to encrypt to the same ciphertext letter.  When that happens, perfect
-  decryption is impossible for those characters.  The program detects this
+Some of the (shift1, shift2) pairs lead to two distinct letters of the 
+plain text being encrypted into the same letter of the cipher text.
+Perfect decoding becomes impossible in such cases.The program detects this
   condition and warns the user before proceeding.
 """
 
@@ -48,8 +48,8 @@ def _encrypt_char(ch: str, shift1: int, shift2: int) -> str:
 
 def check_collisions(shift1: int, shift2: int) -> dict:
     """
-    Build forward (plain->cipher) maps for lowercase and uppercase and detect
-    any ciphertext letter produced by more than one plaintext letter.
+    Construct forward mappings from plaintext to ciphertext both for lowercase letters and uppercase letters, and discover
+    if any ciphertext letter is derived from more than one plaintext letter.
 
     Returns a dict:
         'lower': list of (plain1, plain2, cipher_char)
